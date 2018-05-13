@@ -1,0 +1,1 @@
+-e  git://github.com/paulchakravarti/dnslib.git#egg=dnslib
