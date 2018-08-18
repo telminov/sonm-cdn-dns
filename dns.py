@@ -18,8 +18,13 @@ class Resolver:
         self.cache_refresh = datetime.timedelta(seconds=60)
 
     def resolve(self, request, handler):
-        client_ip, client_port = handler.client_address
         reply = request.reply()
+
+        query = str(request.q.qname)
+        if query != settings.CDN_DOMAIN:
+            return reply
+
+        client_ip, client_port = handler.client_address
 
         code_continent = get_continent_code_from_ip(client_ip)
         cdn_node_ip = self.get_cdn_node_ip(code_continent)
@@ -32,16 +37,18 @@ class Resolver:
 
     def get_cdn_node_ip(self, code_continent) -> Optional[str]:
         now = datetime.datetime.now()
-        if (now - self.cache_updated) > self.cache_refresh:
+        if not self.cache_updated or (now - self.cache_updated) > self.cache_refresh:
             url = settings.NODE_MANAGER_URL + '/api/nodes_by_regions/'
-            headers = {'Authentication': 'Token %s' % settings.NODE_MANAGER_TOKEN}
+            headers = {'Authorization': 'Token %s' % settings.NODE_MANAGER_TOKEN}
             response = requests.get(url, headers=headers)
             self.cache = response.json()
             self.cache_updated = now
 
         nodes = self.cache.get(code_continent)
         if not nodes:
-            nodes = random.choice(self.cache.values())
+            not_empty_regions = [i for i in self.cache.values() if i]
+            if not_empty_regions:
+                nodes = random.choice(not_empty_regions)
 
         if nodes:
             cdn_node_ip = random.choice(nodes)

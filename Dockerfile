@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 RUN apt-get clean && apt-get update && apt-get install -y \
     python3-dev \
     python3-pip \
-    wget
+    wget git
 
 
 ADD requirements.txt /tmp/requirements.txt
@@ -20,4 +20,4 @@ WORKDIR /opt/app
 
 EXPOSE 8053
 
-CMD cp /conf/setting.py .; python3 dns.py
+CMD cp /conf/settings.py .; python3 dns.py
