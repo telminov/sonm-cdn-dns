@@ -1,2 +1,3 @@
 -e  git://github.com/paulchakravarti/dnslib.git#egg=dnslib
-requests (2.18.4)
+requests==2.18.4
+#dnslib==0.9.7

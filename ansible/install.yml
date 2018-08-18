@@ -1,0 +1,50 @@
+- name: Install SONM CDN node manager
+  hosts: all
+
+  tasks:
+    - name: install packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        cache_valid_time: 3600
+      with_items:
+        - docker.io
+        - python-pip
+
+    - name: install docker-py
+      pip:
+        name: docker-py
+        version: 1.10.6
+
+
+    - name: remove old dns instance
+      docker_container:
+        name: dns
+        image: telminov/sonm-cdn-dns
+        state: absent
+
+    - name: create config directories
+      file:
+        path: "/var/docker/dns/{{ item }}"
+        state: directory
+        owner: root
+        mode: 0700
+      with_items:
+        - conf
+
+    - name: create dns config
+      template:
+        src: settings.py.jinja2
+        dest: /var/docker/dns/conf/settings.py
+
+
+
+    - name: start dns
+      docker_container:
+        name: dns
+        image: telminov/sonm-cdn-dns
+        pull: yes
+        ports:
+          - 0.0.0.0:{{ DNS_PORT }}:8053
+        volumes:
+          - /var/docker/dns/conf:/conf
