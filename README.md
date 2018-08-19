@@ -19,7 +19,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 echo "INSTANCE_HOST_IP" > inventory
 
-ansible-playbook -i inventory -u root install.yml -e "DNS_PORT=8053 CDN_DOMAIN=cdn.sonm.soft-way.biz. MANAGER_URL=http://node-manager.cdn.sonm.soft-way.biz MANAGER_TOKEN=269f9cf80c75881adebd5db8a6782ca7b1c03f1a IP_STACK_ACCESS_KEY=d6b7f0fbe5b6e72d5b534b4989206cda"
+ansible-playbook -i inventory -u root install.yml -e "DNS_PORT=8053 CDN_DOMAIN=cdn-sonm.soft-way.biz. MANAGER_URL=http://node-manager.cdn.sonm.soft-way.biz MANAGER_TOKEN=269f9cf80c75881adebd5db8a6782ca7b1c03f1a IP_STACK_ACCESS_KEY=d6b7f0fbe5b6e72d5b534b4989206cda"
 ```
 
 ## Check local dns
