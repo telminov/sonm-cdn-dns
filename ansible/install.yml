@@ -45,6 +45,6 @@
         image: telminov/sonm-cdn-dns
         pull: yes
         ports:
-          - 0.0.0.0:{{ DNS_PORT }}:8053
+          - 0.0.0.0:{{ DNS_PORT }}:8053/udp
         volumes:
           - /var/docker/dns/conf:/conf

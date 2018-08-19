@@ -64,5 +64,6 @@ class Resolver:
 
 resolver = Resolver()
 
-server = DNSServer(resolver, port=8053, address='0.0.0.0', tcp=True)
+# server = DNSServer(resolver, port=8053, address='0.0.0.0', tcp=True)
+server = DNSServer(resolver, port=8053, address='0.0.0.0')
 server.start()

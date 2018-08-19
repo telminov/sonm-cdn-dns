@@ -18,6 +18,7 @@ COPY . /opt/app
 WORKDIR /opt/app
 
 
-EXPOSE 8053
+#EXPOSE 8053/tcp
+EXPOSE 8053/udp
 
 CMD cp /conf/settings.py .; python3 dns.py

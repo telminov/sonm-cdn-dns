@@ -19,7 +19,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 echo "INSTANCE_HOST_IP" > inventory
 
-ansible-playbook -i inventory -u root install.yml -e "DNS_PORT=8053 CDN_DOMAIN=cdn-sonm.soft-way.biz. MANAGER_URL=http://node-manager.cdn.sonm.soft-way.biz MANAGER_TOKEN=269f9cf80c75881adebd5db8a6782ca7b1c03f1a IP_STACK_ACCESS_KEY=d6b7f0fbe5b6e72d5b534b4989206cda"
+ansible-playbook -i inventory -u root install.yml -e "DNS_PORT=53 CDN_DOMAIN=cdn-sonm.soft-way.biz. MANAGER_URL=http://node-manager.cdn.sonm.soft-way.biz MANAGER_TOKEN=269f9cf80c75881adebd5db8a6782ca7b1c03f1a IP_STACK_ACCESS_KEY=d6b7f0fbe5b6e72d5b534b4989206cda"
 ```
 
 ## Check local dns
@@ -30,13 +30,14 @@ virtualenv -p python3 venv
 source venv/bin/activate
 python3 dns.py
 ```
+
 in other terminal
 ```
-dig ya.ru @127.0.0.1 -p 8053 +tcp
+dig cdn-sonm.soft-way.biz @127.0.0.1 -p 8053 +tcp
 ```
 
 
 ## Check prod
 ```
-dig cdn.sonm.soft-way.biz @dns.sonm.soft-way.biz -p 8053 +tcp
+dig cdn-sonm.soft-way.biz @dns.sonm.soft-way.biz -p 53 +tcp
 ```
