@@ -33,11 +33,12 @@ python3 dns.py
 
 in other terminal
 ```
-dig cdn-sonm.soft-way.biz @127.0.0.1 -p 8053 +tcp
+dig cdn-sonm.soft-way.biz @127.0.0.1 -p 8053
 ```
 
 
 ## Check prod
 ```
-dig cdn-sonm.soft-way.biz @dns.sonm.soft-way.biz -p 53 +tcp
+dig cdn-sonm.soft-way.biz @dns.sonm.soft-way.biz
 ```
+or
