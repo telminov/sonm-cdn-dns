@@ -13,6 +13,7 @@ import settings
 class Resolver:
     def __init__(self):
         super().__init__()
+        self.clients_cache = {}
         self.cache = {}
         self.cache_updated = None
         self.cache_refresh = datetime.timedelta(seconds=60)
@@ -26,7 +27,7 @@ class Resolver:
 
         client_ip, client_port = handler.client_address
 
-        code_continent = get_continent_code_from_ip(client_ip)
+        code_continent = self.get_continent_code_from_ip(client_ip)
         cdn_node_ip = self.get_cdn_node_ip(code_continent)
 
         if cdn_node_ip:
@@ -53,6 +54,12 @@ class Resolver:
         if nodes:
             cdn_node_ip = random.choice(nodes)
             return cdn_node_ip
+
+    def get_continent_code_from_ip(self, client_ip) -> Optional[str]:
+        if client_ip not in self.clients_cache:
+            continent_code = get_continent_code_from_ip(client_ip)
+            self.clients_cache[client_ip] = continent_code
+        return self.clients_cache[client_ip]
 
 
 resolver = Resolver()

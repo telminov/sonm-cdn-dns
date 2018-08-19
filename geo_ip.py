@@ -1,4 +1,6 @@
 import os
+from typing import Optional
+
 import requests
 import settings
 
@@ -6,7 +8,7 @@ import settings
 DATABASE_URL = 'http://api.ipstack.com'
 
 
-def get_continent_code_from_ip(ip):
+def get_continent_code_from_ip(ip) -> Optional[str]:
     url = os.path.join(DATABASE_URL, ip)
     response = requests.get(url, params={'access_key': settings.IP_STACK_ACCESS_KEY})
     response = response.json()
