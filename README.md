@@ -42,3 +42,6 @@ dig cdn-sonm.soft-way.biz @127.0.0.1 -p 8053
 dig cdn-sonm.soft-way.biz @dns.sonm.soft-way.biz
 ```
 or
+```
+dig cdn-sonm.soft-way.biz
+```
