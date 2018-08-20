@@ -1,8 +1,12 @@
 # dns
+DNS is the element of [SONM CDN](https://github.com/telminov/sonm-cdn-node-manager/blob/master/SONM%20CDN.md)
+
 DNS that redirects requests to the appropriate CDN nodes
 
 
 ## Installation
+Referens installation descripted in ansible-playbook - https://github.com/telminov/sonm-cdn-dns/blob/master/ansible/install.yml
+
 Install example on Digital Ocean instance with Ubuntu Server 18.04
 
 install python on host
