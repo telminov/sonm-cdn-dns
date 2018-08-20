@@ -1,5 +1,5 @@
 # dns
-DNS, который перенапрляет запросы на соответствующие узлы CDN
+DNS that redirects requests to the appropriate CDN nodes
 
 
 ## Installation
