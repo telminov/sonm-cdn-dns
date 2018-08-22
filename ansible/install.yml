@@ -1,4 +1,4 @@
-- name: Install SONM CDN node manager
+- name: Install SONM CDN DNS
   hosts: all
 
   tasks:
