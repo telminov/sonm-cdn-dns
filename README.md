@@ -14,8 +14,15 @@ Need installed packages:
 - pip
 - ansible
 
-### use command line
 
+
+To use this project, you need two IP_STACK_ACCESS_KEY tokens to use the GEO API and MANAGER_TOKEN from node_manager for the return ip
+
+How to get TOKENS:
+- IP_STACK_ACCESS_KEY - Need registration on [ipstack.com](https://ipstack.com/) and copy API KEY
+- MANAGER_TOKEN -  In node_manager by the path `/admin/` in the Tokens tab. Create a new token for the required user.
+
+### use command line
 
 install python on host
 ```
@@ -38,6 +45,13 @@ ansible-playbook -i inventory -u root install.yml -e "DNS_PORT=53 CDN_DOMAIN=cdn
 run for project directory
 ```
 /bin/sh install.sh -a "INSTANCE_HOST_IP" -d "DOMAIN" -p PORT -u "MANAGER_URL" -t "MANAGER_TOKEN" -k "IP_STACK_ACCESS_KEY"
+```
+
+### create dns record
+
+To use, you need to add a DNS record for our host (for example, cdn-sonm.soft-way.biz)
+```
+cdn-sonm NS INSTANCE_HOST_IP
 ```
 
 ## Check local dns
